@@ -1,0 +1,152 @@
+Objective: 
+To understand the application of RESTful principles in the 5G Service Based 
+Architecture (SBA) by simulating key procedures and observing the use of HTTP methods.
+
+
+Theory :
+5G is designed to serve as a global connectivity and integration platform for various industries, 
+known as "verticals," enabling various use cases. The 5G core architecture uses virtualization 
+and cloud computing to emphasize flexibility, scalability, automation, and security. It also 
+supports the Internet of Things and seamless communication across these industry verticals. 
+The 5G utilizes a service-based architecture that enables Network Functions (NFs) to 
+communicate through Service-Based Interfaces (SBIs) via the "HTTP REST paradigm" 
+(Representational State Transfer). 
+
+
+There are three key procedures in the 5G Service-Based Architecture (SBA) using the HTTP 
+REST paradigm: 
+1. Service Registration 
+For example, a PCF (Policy Control Function) registers its services with the NRF (Network 
+Repository Function) using a POST request. 
+2. Service Discovery 
+For example, an AMF (Access and Mobility Management Function) queries the NRF using 
+a GET request for a suitable SMF. The NRF responds with the SMF's address. 
+3. Session Request 
+For example, the AMF establishes a session with the SMF using POST or PUT for further 
+interactions.
+
+
+
+Main Commands :
+
+GET: GET requests are used to read or retrieve data from a web server. A successful retrieval 
+returns an HTTP status code of 200 (OK). 
+
+POST: POST requests send data, such as files and form data, to the server and return an HTTP 
+status code of 201 upon successful creation. 
+
+PUT: A PUT request modifies data on the server. It replaces the entire content at a specified 
+location with the data provided in the request's body payload. If no resources match the request, 
+a new resource is created. 
+
+DELETE: A DELETE request removes data from the server at a specified location. 
+
+HEAD: It offers metadata regarding a resource located on the server. 
+
+TRACE: Trace for diagnostics, debugging, and troubleshooting. 
+
+OPTIONS: To identify the list of HTTP methods supported and allowed by the server. 
+
+CONNECT: It is for establishing a connection between operations and a server-side resource. 
+
+PATCH: PATCH works like a PUT request, but it only changes part of the data. 
+
+
+
+
+LAB:
+
+
+STEP 1: Download CURL from https://curl.se/windows/  
+
+STEP 2: Download the file named "5G_core.py" from OneDrive. 
+
+STEP 3:  
+1. Open the Anaconda PowerShell. 
+2. Type `cd Downloads` to navigate to the folder where you downloaded the 5G_core.py 
+file. 
+3. Type python 5G_core.py in the command prompt. 
+
+
+STEP 4: To open the Command Prompt, press Ctrl + R. Then, type "cmd" and hit Enter. Next, 
+use the "cd" command to navigate to the curl location on your PC. 
+
+STEP 5: Open Wireshark and select the "Adapter for loopback traffic capture." 
+Execute the following commands in the terminal using CURL.  
+
+Note: Step 6 to 19, make sure to record the output observed. 
+
+STEP 6: 
+Imagine the AMF verifying the UE IMSI with AUSF and UDM using the HTTP POST 
+method.  
+To do this, type the following command in the command prompt: 
+curl -X POST http://localhost:5000/5g_core/amf -d "imsi=123456789012" 
+
+STEP 7: What if, the IMSI is not in the AUSF database, use the following command 
+curl -X POST http://localhost:5000/5g_core/amf -d "imsi=123456789011" 
+
+STEP 8: Imagine that the AUSF verifies and registers the IMSI in the UDM. If it exists, it 
+obtains the 'k' value for the respective IMSI of the registered user using the HTTP POST 
+method. 
+curl -X POST http://localhost:5000/5g_core/ausf -d "imsi=123456789012"
+
+STEP 9: If you try to POST an IMSI that is not in the UDM database, the system should return 
+"IMSI does not exist in UDM": 
+curl -X POST http://localhost:5000/5g_core/ausf -d "imsi=999999999999" 
+
+STEP 10: To update the 'k' value for an existing IMSI in AUSF, use the HTTP PUT method. 
+curl -X PUT http://localhost:5000/5g_core/ausf -d "imsi=123456789012" -d "k=54321"
+
+STEP 11: To partially update the 'k' value of an IMSI in AUSF, use the HTTP PATCH 
+method: 
+curl -X PATCH http://localhost:5000/5g_core/ausf -d "imsi=123456789012" -d 
+"k=55555" 
+
+STEP 12: To delete an IMSI from the AUSF database, use the HTTP DELETE method: 
+curl -X DELETE http://localhost:5000/5g_core/ausf -d "imsi=123456789012" 
+
+STEP 13: To view the headers for the NEF database, use the HTTP HEADER method: 
+curl -I http://localhost:5000/5g_core/nef
+
+
+STEP 14: To echo back the HTTP request for debugging, use the HTTP TRACE method: 
+curl -X TRACE http://localhost:5000/5g_core/nef
+
+STEP 15: To view the list available HTTP methods for NEF, use the HTTP OPTIONS 
+method: 
+curl -X OPTIONS http://localhost:5000/5g_core/nef
+
+STEP 16: To retrieve the NEF database, use the HTTP GET method: 
+curl -X GET http://localhost:5000/5g_core/nef
+
+
+STEP 17: To retrieve UPF IPs, use the HTTP GET method: 
+curl -X GET http://localhost:5000/5g_core/upf
+
+STEP 18: To retrieve PCF QoS Profiles, use the HTTP GET method: 
+curl -X GET http://localhost:5000/5g_core/pcf
+
+STEP 19: To observe HTTP status codes and message exchanges, use the "http" filter in 
+Wireshark. 
+
+
+
+Some important things:
+
+1. What are the four primary HTTP methods (verbs) used in RESTful APIs? 
+2. Which HTTP method is typically used to create a new resource? 
+3. Which HTTP method is typically used to retrieve a resource? 
+4. Which HTTP method is typically used to update an existing resource? 
+5. Which HTTP method is typically used to delete a resource? 
+6. How does the 5G Service-Based Architecture (SBA) differ from previous mobile network 
+architectures, and what advantages does this new approach offer in terms of flexibility, 
+scalability, and service deployment? 
+7. Explain the role of the Network Repository Function (NRF) in the 5G SBA. How does it 
+facilitate service discovery and communication between different Network Functions 
+(NFs)? 
+8. Discuss the key characteristics of cloud-native design principles and explain how these are 
+implemented within the SBA framework. 
+9. How does the SBA facilitate the creation, management, and orchestration of network 
+slices?
+
+
