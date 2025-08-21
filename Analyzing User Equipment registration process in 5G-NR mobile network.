@@ -1,7 +1,66 @@
+STEP 1:
+
 Software Requirement: 
 Download the Wireshark tool from 
-```bash 
+
 https://www.wireshark.org/download.html 
-```  
+
+
+STEP 2:
+
 Files Requirement: 
---> During Experiment 1, .pcap files were generated for CN and gNB. 
+--> During Experiment 1, .pcap files were generated for CN and gNB.
+
+STEP 3:
+
+Let’s analyze the 5G standalone registration. 
+
+link --"https://yatebts.com/documentation/concepts/5g-core-network/session-management-function-smf/ "
+
+Now we want to follow some steps 
+
+1. Open CN.cpcap file using Wireshark. 
+2. In “Apply a display filter” type ngap to view only ngap protocol 
+exchanges. 
+
+STEP 4:
+
+In Wireshark after applying ngap filter, select Initial UE Message, 
+Registration request. 
+
+
+STEP 5:
+
+In Wireshark after applying ngap filter, select Downlink NAS Transport 
+view Identity request. 
+
+
+
+STEP 6:
+
+In Wireshark after applying ngap filter, select Uplink NAS Transport 
+view Identity response.
+
+
+STEP 7:
+
+ In Wireshark after applying ngap filter, select Downlink NAS Transport 
+view Authentication request.
+
+
+STEP 8:
+
+In Wireshark after applying ngap filter, select Uplink NAS Transport 
+view Authentication response.
+
+
+Some Important Questions Below:
+
+1. Describe the roles of AMF. 
+2. Describe the roles of SMF. 
+3. Describe the roles of SCP. 
+4. Describe the roles of BSF. 
+5. Describe the roles of AUSF. 
+6. Describe the roles of NSSAAF. 
+7. Describe the roles of AF. 
+8. Describe the roles of UDM. 
