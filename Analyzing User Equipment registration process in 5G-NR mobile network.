@@ -1,0 +1,7 @@
+Software Requirement: 
+Download the Wireshark tool from 
+```bash 
+https://www.wireshark.org/download.html 
+```  
+Files Requirement: 
+--> During Experiment 1, .pcap files were generated for CN and gNB. 
