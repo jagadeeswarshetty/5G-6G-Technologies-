@@ -1,1 +1,110 @@
+A. Enabling Core Network, 
+B. Enabling Next Generation NodeB (gNBs) for LTE connectivity
+
+IN LAB
+
+STEP 1: Switch on PC’s of Core Network, gNB and Router. 
+
+STEP 2: Perform the following operations on Core Network PC. 
+Open the terminal window, In Terminal 1: To check CN IP address. 
+Enter: ifconfig 
+Note down, the IP address of enp0s31f6 
+
+
+STEP 3: Perform the following operations on gNB PC. 
+In gNB PC and open terminal window, In Terminal 1: To check gNB IP address. 
+Enter: ifconfig 
+Note down, the IP address of enp0s31f6 
+
+
+STEP 4: This operation is performed on gNB PC to ping CN PC 
+In the terminal window ping the ip address of CN enp0s31f6 from gNB PC 
+ping 192.168.1.2
+After few pings, press ctrl+C 
+
+
+STEP 5: This operation is performed on CN PC to ping gNB PC. 
+In the terminal window ping the ip address of gNB PC enp0s31f6 from CN PC 
+ping 192.168.1.4 
+After few pings, press ctrl+C
+
+STEP 6: Perform the following operations on Core Network PC. 
+Open a new terminal window and type the following to create a tcpdump to record 
+exchanges between gNB and CN to provide insight into UE, E-UTRAN, AMF, SMF, 
+UDM, UDR, PCF, NRF, NSSF and UPF.  
+sudo tcpdump -i any -w 5g_sa_cn.pcap 
+or 
+sudo tcpdump -i any -w student_id_number_date_5g_sa_cn.pcap 
+
+
+STEP 7: Perform the following operations on Core Network PC. 
+Open a new terminal window, type the following to run the core network of SA 
+startCNSA 
+
+
+STEP 8: Perform the following operations on Core Network PC. 
+Open a new terminal window, type the following to view the status of AMF. 
+showAMFLog 
+showUPFLog 
+showSMFLog 
+showAUSFLog 
+showUDRLog 
+showUDMLog 
+showNRFLog 
+showNSSFLog 
+showPCFLog 
+showPCRFLog 
+showBSFLog
+
+STEP 8.1: Perform the following operations on Core Network PC. 
+Open a new terminal window, type the following to enable internet on core network PC. 
+enableInternetSA 
+
+STEP 9: Perform the following operations on Core Network PC. 
+To view the subscribers details, in web browser’s address bar 
+http://localhost:3000 
+Username: admin 
+Password: 1423
+
+STEP 10: Perform the following operations on gNB PC. 
+Open a new terminal window and type the following to create a tcpdump to record 
+exchanges between gNB and CN to provide insight into UE, E-UTRAN, AMF, SMF, 
+UDM, UDR, PCF, NRF, NSSF and UPF.  
+sudo tcpdump -i any -w 5g_sa_gnb.pcap 
+or 
+sudo tcpdump -i any -w student_id_number_date_5g_sa_gnb.pcap
+
+STEP 11: Perform the following operations on gNB PC. 
+Open a new terminal window, type the following to run the radio network in 5G Stand 
+Alone (SA) configuration. 
+startgNBSAMonitor 
+startgNBSA 
+http://localhost:3300 
+"The attachment of gNB via AMF with SA CN is now completed"
+"In the core network PC, in the terminal window of AMF log we can view gNB accepted"
+
+STEP 12: Enable User Equipment’s (mobile phones) and connect to mobile network. Students 
+can view their user equipment’s connected to the Stand-Alone network (5G network). 
+NOTE: The IP address in the User Equipments. 
+
+• After STEP 12, press ctrl+C in all open terminals to end operations in CN and gNB PCs. 
+
+Some Important things:
+
+1.  Outline the modules of 5G core network. 
+2.  Explain EPC. 
+3.  Explain EPC+. 
+4.  Illustrate 5G Cloud Packet Core (CPC). 
+5.  Explain Next Generation e-NodeB (ng-eNB) 
+6.  Explain Next Generation NodeB (gNB). 
+7.  Outline the sequence of UE registration process. 
+8.  Describe the information stored in subscriber information data base. 
+
+
+
+
+
+
+
+
 
