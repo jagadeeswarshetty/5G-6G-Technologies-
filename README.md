@@ -51,3 +51,21 @@ Provides subscription details like service entitlements, data plans, and roaming
 PCF: Provides QoS and policy decisions (bandwidth allocation, slicing rules, charging control).
 
 AF: Communicates application-level requirements (e.g., video streaming platform requests low latency), which are then enforced by PCF and SMF.
+
+
+## Radio Protocol Architecture
+
+<img src = "RADIO PROTOCOL ARCHITECTURE.png" alt = "Radio Protocol Architecture">
+
+
+Both User Plane and Control Plane is made up of a common
+ structure:
+ • PHY
+ • MAC
+ • RLC
+ • PDCP
+ • User Plane, a layer called SDAP is sitting at the top of the radio stack.
+ • Control Plane, the two layers RRC and NAS are sitting at the top of
+ the stack.
+ • NAS layer gets connected to AMF (Access and Mobility Management
+ Function)
