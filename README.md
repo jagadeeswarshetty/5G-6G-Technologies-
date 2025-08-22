@@ -1,71 +1,67 @@
-## 5G CORE ARCHITECTURE 
+# 📡 5G Core & Radio Protocol Architecture  
 
-<img src = "5GArchitecture.png" alt = " 5GArchitecture">
+## 5G Core Architecture  
 
-### UE → RAN → 5GC → DN Path
+![5G Core Architecture](5GArchitecture.png)  
 
-A 5G User Equipment (UE) (smartphone, IoT device, or CPE) first connects to the 5G New Radio (gNB).
+### UE → RAN → 5GC → DN Path  
+- **UE (User Equipment):** Smartphone, IoT device, or CPE first connects to the 5G New Radio (gNB).  
+- **gNB:** Relays signaling and user traffic towards the 5G Core (5GC), which acts as the **brain** of the network.  
+- **5GC:** Routes traffic to Data Networks (DN) → Internet, enterprise networks, or edge-cloud services.  
 
-The gNB relays signaling and user traffic towards the 5G Core (5GC), which acts as the brain of the network.
+---
 
-From there, traffic is routed towards Data Networks (DN), which could be the public Internet, enterprise networks, or edge-cloud services.
+### Access and Mobility Management Function (AMF)  
+- Control-plane anchor for the UE.  
+- Handles **mobility management, registration, reachability, paging, authentication signaling**.  
+- Think of it as the **"front desk"** of the 5G Core (signaling only, not user data).  
 
-### Access and Mobility Management Function (AMF)
+### Session Management Function (SMF)  
+- Selected by the AMF based on UE’s service request.  
+- Creates and maintains **PDU Sessions (data sessions)**.  
+- Controls **User Plane Function (UPF)**: IP allocation, QoS, traffic steering.  
 
-Acts as the control-plane anchor for the UE.
+### User Plane Function (UPF)  
+- The **data traffic engine** of 5G.  
+- Forwards **IP packets** between UE ↔ external networks.  
+- Supports **UL Classifier (UL-CL)** & **local breakout** (e.g., MEC/edge computing for low latency).  
 
-Handles mobility management, registration, reachability, paging, and serves as the first point of authentication signaling.
+### Authentication Server Function (AUSF)  
+- Validates UE credentials using **5G-AKA or EAP-AKA’** protocols.  
+- Works with **UDM** to fetch subscription profiles.  
 
-Think of it as the "front desk" of the 5G Core that manages signaling but not user data.
+### Unified Data Management (UDM) & Unified Data Repository (UDR)  
+- Stores **subscriber data, profiles, authentication vectors**.  
+- Provides service entitlements, data plans, and roaming policies.  
 
-### Session Management Function (SMF)
+### Policy Control Function (PCF) & Application Function (AF)  
+- **PCF:** Provides QoS and policy decisions (bandwidth, slicing, charging).  
+- **AF:** Sends application-level requirements (e.g., video streaming → low latency) which PCF/SMF enforce.  
 
-Chosen by the AMF based on the UE’s service request.
+---
 
-Responsible for creating and maintaining PDU Sessions (data sessions).
+## Radio Protocol Architecture  
 
-Controls the User Plane Function (UPF) via rules: IP allocation, QoS enforcement, and traffic steering.
+![Radio Protocol Architecture](RADIO%20PROTOCOL%20ARCHITECTURE.png)  
 
-### User Plane Function (UPF)
+### Common Stack Layers  
+- **PHY** (Physical Layer)  
+- **MAC** (Medium Access Control)  
+- **RLC** (Radio Link Control)  
+- **PDCP** (Packet Data Convergence Protocol)  
 
-The data traffic engine of 5G.
+### User Plane  
+- **SDAP** sits on top of PDCP.  
 
-Forwards IP packets between the UE and external networks.
+### Control Plane  
+- **RRC** (Radio Resource Control)  
+- **NAS** (Non-Access Stratum)  
+- **NAS** connects directly to **AMF (Access & Mobility Management Function)**.  
 
-Supports advanced features like Uplink Classifier (UL-CL) and branching to local breakout (e.g., MEC/edge computing for ultra-low latency).
+---
 
-### Authentication Server Function (AUSF)
-
-Validates UE credentials during initial attachment using 5G-AKA or EAP-AKA’ protocols.
-
-Works with Unified Data Management (UDM) to fetch subscription profiles.
-
-### Unified Data Management (UDM) & Unified Data Repository (UDR)
-
-Stores subscriber data, profiles, and authentication vectors.
-
-Provides subscription details like service entitlements, data plans, and roaming policies.
-
-### Policy Control Function (PCF) & Application Function (AF)
-
-PCF: Provides QoS and policy decisions (bandwidth allocation, slicing rules, charging control).
-
-AF: Communicates application-level requirements (e.g., video streaming platform requests low latency), which are then enforced by PCF and SMF.
-
-
-## Radio Protocol Architecture
-
-<img src = "RADIO PROTOCOL ARCHITECTURE.png" alt = "Radio Protocol Architecture">
-
-
-Both User Plane and Control Plane is made up of a common
- structure:
- • PHY
- • MAC
- • RLC
- • PDCP
- • User Plane, a layer called SDAP is sitting at the top of the radio stack.
- • Control Plane, the two layers RRC and NAS are sitting at the top of
- the stack.
- • NAS layer gets connected to AMF (Access and Mobility Management
- Function)
+## 📘 Summary  
+- **5GC** is the brain of 5G, managing both control and user planes.  
+- **AMF & SMF** handle signaling and sessions.  
+- **UPF** manages user data flow.  
+- **Radio Protocol Stack** ensures efficient communication between UE ↔ RAN ↔ Core.  
