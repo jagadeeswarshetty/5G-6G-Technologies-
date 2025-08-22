@@ -58,10 +58,4 @@
 - **NAS** (Non-Access Stratum)  
 - **NAS** connects directly to **AMF (Access & Mobility Management Function)**.  
 
----
 
-## 📘 Summary  
-- **5GC** is the brain of 5G, managing both control and user planes.  
-- **AMF & SMF** handle signaling and sessions.  
-- **UPF** manages user data flow.  
-- **Radio Protocol Stack** ensures efficient communication between UE ↔ RAN ↔ Core.  
